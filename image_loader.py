@@ -7,9 +7,10 @@ from PIL import Image, ImageOps, ImageSequence
 import numpy as np
 from aiohttp import web
 
-import node_helpers
-import folder_paths
-from server import PromptServer
+# ComfyUI runtime modules (available when loaded in ComfyUI)
+import node_helpers  # type: ignore
+import folder_paths  # type: ignore
+from server import PromptServer  # type: ignore
 
 
 class ImageLoader:
