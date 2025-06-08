@@ -43,16 +43,19 @@ app.registerExtension({
 						method: "POST",
 						body: JSON.stringify({
 							filetype: "input",
-							subfolder: subfolder
+							subfolder: subfolder,
+							suffix: ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'gif', 'tiff', 'tga', 'JPG', 'JPEG', 'PNG', 'WEBP', 'BMP', 'GIF', 'TIFF', 'TGA']
 						})
 					});
 
 					if (resp.status === 200) {
 						const data = await resp.json();
+						console.log("LoadImageWithSubfolder: API response data:", data);
 						imageWidget.options.values = []
 						for (const name of data.images) {
 							imageWidget.options.values.push(name);
 						}
+						console.log("LoadImageWithSubfolder: Available images:", imageWidget.options.values);
 						if (imageWidget.options.values.length > 0) {
 							imageWidget.value = imageWidget.options.values[0];
 						}
@@ -123,7 +126,7 @@ app.registerExtension({
 				const fileInput = document.createElement("input");
 				Object.assign(fileInput, {
 					type: "file",
-					accept: "image/jpeg,image/png,image/webp",
+					accept: "image/jpeg,image/jpg,image/png,image/webp,image/bmp,image/gif,image/tiff",
 					style: "display: none",
 					onchange: async () => {
 						if (fileInput.files.length) {
