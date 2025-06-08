@@ -2,9 +2,9 @@ import { app } from "../../scripts/app.js";
 import { api } from "../../scripts/api.js"
 
 
-// Load Image With Subfolder
+// Load Image With Subfolder (Advanced)
 app.registerExtension({
-	name: "LoadImageWithSubfolder",
+	name: "LoadImageWithSubfolderAdvanced",
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
 		if (nodeData.name === "LoadImageWithSubfolder") {
 			if (nodeData?.input?.required?.image?.[1]?.image_upload === true) {
@@ -35,7 +35,7 @@ app.registerExtension({
 							const currentImageValue = imageWidget.value;
 							const currentSubfolderValue = subfolderWidget.value;
 							
-							console.log(`LoadImageWithSubfolder: Restoring node ${this.id} with image: ${currentImageValue}, subfolder: ${currentSubfolderValue}`);
+							console.log(`LoadImageWithSubfolder-Advanced: Restoring node ${this.id} with image: ${currentImageValue}, subfolder: ${currentSubfolderValue}`);
 							
 							// Trigger a refresh to restore the image picker for this specific node
 							getImages(currentSubfolderValue || "", true, currentImageValue).then(() => {
@@ -43,9 +43,9 @@ app.registerExtension({
 								if (imageWidget.options.values.includes(currentImageValue)) {
 									imageWidget.value = currentImageValue;
 									showImage(currentImageValue);
-									console.log(`LoadImageWithSubfolder: Successfully restored node ${this.id} with image: ${currentImageValue}`);
+									console.log(`LoadImageWithSubfolder-Advanced: Successfully restored node ${this.id} with image: ${currentImageValue}`);
 								} else {
-									console.warn(`LoadImageWithSubfolder: Image ${currentImageValue} not found in subfolder ${currentSubfolderValue} for node ${this.id}`);
+									console.warn(`LoadImageWithSubfolder-Advanced: Image ${currentImageValue} not found in subfolder ${currentSubfolderValue} for node ${this.id}`);
 								}
 							});
 						}
@@ -69,7 +69,7 @@ app.registerExtension({
 						app.graph.setDirtyCanvas(true);
 					};
 					img.onerror = () => {
-						console.warn("LoadImageWithSubfolder: Failed to load image:", name);
+						console.warn("LoadImageWithSubfolder-Advanced: Failed to load image:", name);
 						node.imgs = [];
 						app.graph.setDirtyCanvas(true);
 					};
@@ -87,7 +87,7 @@ app.registerExtension({
 
 				async function getImages(subfolder, preserveCurrentValue = false, targetImageValue = null) {
 					const currentValue = targetImageValue || imageWidget.value;
-					console.log(`LoadImageWithSubfolder: Node ${node.id} - Getting images for subfolder: "${subfolder}", preserveCurrentValue: ${preserveCurrentValue}, targetImageValue: "${targetImageValue}"`);
+					console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - Getting images for subfolder: "${subfolder}", preserveCurrentValue: ${preserveCurrentValue}, targetImageValue: "${targetImageValue}"`);
 					
 					const resp = await api.fetchApi("/images_in_directory", {
 						method: "POST",
@@ -100,27 +100,27 @@ app.registerExtension({
 
 					if (resp.status === 200) {
 						const data = await resp.json();
-						console.log(`LoadImageWithSubfolder: Node ${node.id} - API response data:`, data);
+						console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - API response data:`, data);
 						imageWidget.options.values = [];
 						for (const name of data.images) {
 							imageWidget.options.values.push(name);
 						}
-						console.log(`LoadImageWithSubfolder: Node ${node.id} - Available images:`, imageWidget.options.values);
+						console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - Available images:`, imageWidget.options.values);
 						
 						// Preserve the current value if it exists in the new list and preserveCurrentValue is true
 						if (preserveCurrentValue && currentValue && currentValue !== "undefined" && imageWidget.options.values.includes(currentValue)) {
 							imageWidget.value = currentValue;
-							console.log(`LoadImageWithSubfolder: Node ${node.id} - Preserved image value: ${currentValue}`);
+							console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - Preserved image value: ${currentValue}`);
 						} else if (imageWidget.options.values.length > 0) {
 							imageWidget.value = imageWidget.options.values[0];
-							console.log(`LoadImageWithSubfolder: Node ${node.id} - Set to first available image: ${imageWidget.value}`);
+							console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - Set to first available image: ${imageWidget.value}`);
 						} else {
 							imageWidget.value = undefined;
-							console.log(`LoadImageWithSubfolder: Node ${node.id} - No images available, set to undefined`);
+							console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - No images available, set to undefined`);
 						}
 						showImage(imageWidget.value);
 					} else {
-						console.error(`LoadImageWithSubfolder: Node ${node.id} - Failed to fetch images:`, resp.status, resp.statusText);
+						console.error(`LoadImageWithSubfolder-Advanced: Node ${node.id} - Failed to fetch images:`, resp.status, resp.statusText);
 						// Don't clear the options if the API call fails
 						if (!preserveCurrentValue) {
 							imageWidget.options.values = [];
@@ -155,7 +155,7 @@ app.registerExtension({
 					if (imageIndex !== -1) {
 						data.widgets_values[imageIndex] = imageWidget.value;
 					}
-					console.log(`LoadImageWithSubfolder: Node ${this.id} - Serializing with subfolder: "${subfolderWidget.value}", image: "${imageWidget.value}"`);
+					console.log(`LoadImageWithSubfolder-Advanced: Node ${this.id} - Serializing with subfolder: "${subfolderWidget.value}", image: "${imageWidget.value}"`);
 					return data;
 				};
 
@@ -175,7 +175,7 @@ app.registerExtension({
 					if (imageWidget.value && imageWidget.value !== "undefined") {
 						const currentImageValue = imageWidget.value;
 						const currentSubfolderValue = subfolderWidget.value;
-						console.log(`LoadImageWithSubfolder: Node ${node.id} - requestAnimationFrame restoring image: ${currentImageValue}, subfolder: ${currentSubfolderValue}`);
+						console.log(`LoadImageWithSubfolder-Advanced: Node ${node.id} - requestAnimationFrame restoring image: ${currentImageValue}, subfolder: ${currentSubfolderValue}`);
 						getImages(currentSubfolderValue ?? "", true, currentImageValue);
 					}
 				});
