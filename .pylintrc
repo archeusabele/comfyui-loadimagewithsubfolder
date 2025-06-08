@@ -1,0 +1,19 @@
+[MASTER]
+# ComfyUI custom node configuration
+# These modules are provided by ComfyUI at runtime
+extension-pkg-allow-list = node_helpers,folder_paths,server
+
+[MESSAGES CONTROL]
+# Disable import warnings for ComfyUI modules
+disable = import-error,
+          unused-import,
+          missing-module-docstring,
+          missing-class-docstring,
+          missing-function-docstring
+
+[TYPECHECK]
+# Ignore missing imports for ComfyUI modules
+ignored-modules = node_helpers,folder_paths,server
+
+[FORMAT]
+max-line-length = 120 
