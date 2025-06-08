@@ -8,7 +8,6 @@ This is a fork of [@liangt/comfyui-loadimagewithsubfolder](https://github.com/li
 
 Extended support for additional image formats beyond the standard PNG/JPG:
 
-- **WEBP** - Modern web image format with better compression
 - **BMP** - Windows bitmap format
 - **GIF** - Graphics Interchange Format (animated support)
 - **TIFF** - Tagged Image File Format (high quality, lossless)
