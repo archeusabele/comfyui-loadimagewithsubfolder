@@ -1,2 +1,25 @@
 __pycache__/
 .DS_Store
+
+# IDE and development files
+.vscode/
+.pylintrc_local
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# OS files
+Thumbs.db
+.DS_Store?
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Development and build artifacts
+build/
+dist/
+*.egg-info/
