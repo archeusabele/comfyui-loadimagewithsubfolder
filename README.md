@@ -1,5 +1,25 @@
 # comfyui-loadimagewithsubfolder
 
+## Changes in This Fork
+
+This is a fork of [@liangt/comfyui-loadimagewithsubfolder](https://github.com/liangt/comfyui-loadimagewithsubfolder) with enhanced image file type support.
+
+### Added Image File Types
+
+Extended support for additional image formats beyond the standard PNG/JPG:
+
+- **WEBP** - Modern web image format with better compression
+- **BMP** - Windows bitmap format
+- **GIF** - Graphics Interchange Format (animated support)
+- **TIFF** - Tagged Image File Format (high quality, lossless)
+- **TGA** - Truevision TGA/TARGA format
+
+**Supported formats:** JPG, JPEG, PNG, WEBP, BMP, GIF, TIFF, TGA (both lowercase and uppercase extensions)
+
+---
+
+## Original Description
+
 Extend comfyui LoadImage node with subfolder support.
 
 It allows you to select images from folders in the input directory.
