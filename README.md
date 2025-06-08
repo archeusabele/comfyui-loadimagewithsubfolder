@@ -4,9 +4,11 @@
 
 This is a fork of [@liangt/comfyui-loadimagewithsubfolder](https://github.com/liangt/comfyui-loadimagewithsubfolder) with enhanced image file type support.
 
+Pulling from the original repository, I was not able to see any image file type other than JPG. Now, in addition to the original owner's support for JPG, PNG, and WEBP formats, the extended list of file types is completely supported by the node.
+
 ### Added Image File Types
 
-Extended support for additional image formats beyond the standard PNG/JPG:
+Extended support for additional image formats beyond the standard PNG/JPG/WEBP:
 
 - **BMP** - Windows bitmap format
 - **GIF** - Graphics Interchange Format (animated support)
