@@ -107,12 +107,16 @@ async def images_in_directory(request):
 
     imgs = []
     if os.path.exists(folder):
-        suffix = json_data.get('suffix', ['jpg', 'jpeg', 'png', 'webp'])
+        suffix = json_data.get('suffix', ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'gif', 'tiff', 'tga'])
         if isinstance(suffix, str):
             suffix = [suffix]
         assert isinstance(suffix, list)
 
         for s in suffix:
             imgs += [os.path.basename(p) for p in glob.glob(f'{folder}/*.{s}')]
+            imgs += [os.path.basename(p) for p in glob.glob(f'{folder}/*.{s.upper()}')]
+        
+        # Remove duplicates
+        imgs = list(set(imgs))
 
     return web.json_response({'images': imgs})
