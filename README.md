@@ -1,4 +1,4 @@
-# comfyui-loadimagewithsubfolder
+# comfyui-loadimagewithsubfolder-advanced
 
 ## Changes in This Fork
 
@@ -43,7 +43,9 @@ Resolved critical issues with workflow restoration after ComfyUI restarts:
 
 ---
 
-## Original Description
+# Original Description
+
+## comfyui-loadimagewithsubfolder
 
 Extend comfyui LoadImage node with subfolder support.
 
